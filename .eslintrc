@@ -1,0 +1,20 @@
+{
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "prettier"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": "off",
+    "no-var": "error",
+    "prefer-const": "error",
+    "space-before-function-paren": ["error", "always"]
+  },
+  "plugins": ["prettier"]
+}
