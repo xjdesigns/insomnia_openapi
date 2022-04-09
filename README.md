@@ -6,11 +6,33 @@ Javascript utility library written in typescript for converting insomnia V4 expo
 
 ## Install
 ```bash
-npm i helping_hand
+npm i insomnia_openapi
 ```
 
 ```bash
-import { module } from 'insomnia_openapi'
+import { Parser } from 'insomnia_openapi'
+```
+
+## Usage
+
+Currently this is built to accomodate a personal project with the goal to update
+and handle as many scenarios as I can for a global community.
+
+```javascript
+	let openapiConfig = {
+		"title": "One Tap Away",
+		"description": "Internal API",
+		"version": "1.0.0"
+	};
+
+	// This would be the export from insomnia as V4
+	const INSOV4 = {
+		...
+	}
+
+	const parser = new ParserClass(INSOV4, { openapiConfig })
+	const output = parser.convert()
+	console.warn('output::', output)
 ```
 
 ## Build
