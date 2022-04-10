@@ -1,4 +1,29 @@
-export function createParameters(request, url: string) {
+import { REGEX } from '../constants'
+
+type IHeader = {
+	name: 'Authorization' | 'Content-Type';
+}
+
+type IRequest = {
+	header: IHeader;
+	body: {
+		text: string,
+		mimeType: string
+	}
+}
+
+type IResponse = {
+	description: string;
+	content: {}
+}
+
+type IResponses = {
+	'200': IResponse;
+	'400': IResponse;
+	'401': IResponse;
+}
+
+export function createParameters(request: IRequest, url: string): any[] {
 	let parameters: any[] = []
 	const pathParams: any[] = createPathParams(url)
 	parameters = [...pathParams]
@@ -21,7 +46,7 @@ export function createParameters(request, url: string) {
 	return parameters
 }
 
-export function createSecurity(request, that: any) {
+export function createSecurity(request: IRequest, that: any): {}[] {
 	let security: {}[] = []
 	let isJwt: boolean = false
 	let isServiceToken: boolean = false
@@ -61,8 +86,7 @@ export function createSecurity(request, that: any) {
 
 export function createPathParams(url: string) {
 	const pathParams: any[] = []
-	const paramRegex: RegExp = /{(.*?)}/g;
-	const params: RegExpMatchArray | null = url.match(paramRegex);
+	const params: RegExpMatchArray | null = url.match(REGEX.paramRegex);
 
 	if (params && params.length > 0) {
 		params.forEach(p => {
@@ -81,7 +105,7 @@ export function createPathParams(url: string) {
 	return pathParams
 }
 
-export function tagLookup(id: string) {
+export function tagLookup(id: string): string[] {
 	if (id) {
 		return [id]
 	}
@@ -90,22 +114,18 @@ export function tagLookup(id: string) {
 }
 
 // NOTE: See note on createPath method
-export function urlFix(url: string) {
+export function urlFix(url: string): string {
 	let replacer: string = ''
-	const promptRegex: RegExp = /{%(.*?)%}/g
-	const promptValueRegex: RegExp = /'(.*?)'/g
-	const promptReg: RegExp = /({%.*?%})/ // leave off the global to grab match
-	const urlMatch: RegExp = /({{.*?}})/g
 
-	replacer = url.replace(urlMatch, '')
-	const result: RegExpMatchArray | null = replacer.match(promptRegex)
+	replacer = url.replace(REGEX.urlMatch, '')
+	const result: RegExpMatchArray | null = replacer.match(REGEX.promptRegex)
 
 	if (result) {
 		result.forEach(res => {
 			// @ts-ignore
-			const promptReplace = res.match(promptValueRegex)[0]
+			const promptReplace = res.match(REGEX.promptValueRegex)[0]
 			const makeVar = promptReplace.replace(/'/, '{').replace(/'/, '}').replace(' ', '_')
-			replacer = replacer.replace(promptReg, makeVar)
+			replacer = replacer.replace(REGEX.promptRegexWBrackets, makeVar)
 		})
 	}
 
@@ -113,7 +133,7 @@ export function urlFix(url: string) {
 	return replacer
 }
 
-export function createRequestBody(request) {
+export function createRequestBody(request: IRequest): {} | null {
 	const { body } = request
 	const len = Object.keys(body).length || 0
 
@@ -152,7 +172,7 @@ export function createRequestBody(request) {
 
 // Since I do not see data being passed back for responses I am just making this up for now
 // Need to do more testing
-export function createGenericResponses(name: string) {
+export function createGenericResponses(name: string): IResponses {
 	const responses = {
 		'200': {
 			description: `${name} 200 response generic`,
