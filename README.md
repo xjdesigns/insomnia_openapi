@@ -18,20 +18,20 @@ Currently this is built to accomodate a personal project with the goal to update
 and handle as many scenarios as I can for a global community.
 
 ```javascript
-	let openapiConfig = {
-		"title": "One Tap Away",
-		"description": "Internal API",
-		"version": "1.0.0"
-	};
+  let openapiConfig = {
+    "title": "My api",
+    "description": "Internal API",
+    "version": "1.0.0"
+  };
 
-	// This would be the export from insomnia as V4
-	const INSOV4 = {
-		...
-	}
+  // This would be the export from insomnia as V4
+  const INSOV4 = {
+    ...
+  }
 
-	const parser = new ParserClass(INSOV4, { openapiConfig })
-	const output = parser.convert()
-	console.warn('output::', output)
+  const parser = new ParserClass(INSOV4, { openapiConfig })
+  const output = parser.convert()
+  console.warn('output::', output)
 ```
 
 ## Build
