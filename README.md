@@ -1,6 +1,5 @@
 # Insomnia OpenAPI
-[![Build Status](https://travis-ci.org/xjdesigns/HelpingHand.svg?branch=master)](https://travis-ci.org/xjdesigns/HelpingHand)
-[![Coverage Status](https://coveralls.io/repos/github/xjdesigns/HelpingHand/badge.svg?branch=master)](https://coveralls.io/github/xjdesigns/HelpingHand?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/xjdesigns/insomnia_openapi/badge.svg?branch=master)](https://coveralls.io/github/xjdesigns/HelpingHand?branch=master)
 
 Javascript utility library written in typescript for converting insomnia V4 exports to openapi v3 spec.
 
@@ -63,14 +62,16 @@ To run locally you will want to `npm link` the package.
 
 NOTE: If you link then unlink a package you must run your install command again.
 
+> If you find linking issues make sure both are on the same node version
+
 ```bash
-* Inside helping_hand
+* Inside insomnia_openapi
 npm link
 ```
 
 ```bash
 * Inside Application
-npm link helping_hand
+npm link insomnia_openapi
 ```
 
 ## Testing
@@ -90,3 +91,9 @@ Run tests coverage report
 ```bash
 npm run test:coverage
 ```
+
+## TODO:
+- Servers is removed from return
+- Add options to config for return values
+- Add ability to pass functions to config for each return to allow user modification
+- Add more tests

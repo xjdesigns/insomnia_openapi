@@ -8,9 +8,13 @@
   "files": [
     "lib/"
   ],
+  "author": {
+    "name": "Jason Jacobson",
+    "email": "jdesigns.jason@gmail.com"
+  },
   "scripts": {
     "build": "npm run build:types && npm run rollup",
-    "build:prod": "npm run rollup -- --environment BUILD:production",
+    "build:prod": "npm run clean && npm run build:types && npm run rollup -- --environment BUILD:production",
     "build:types": "tsc --emitDeclarationOnly",
     "build:watch": "npm run build:types -- --watch & npm run rollup -- --watch",
     "lint": "eslint src/",
@@ -21,8 +25,9 @@
     "test:coverage": "npm run jest -- --coverage",
     "test:coveralls": "npm run test:coverage -- --coverageReporters=text-lcov | coveralls",
     "type-check": "tsc --noEmit",
-    "prepublish": "npm run build",
-		"release": "standard-version"
+    "prepublish": "npm run build:prod",
+    "release": "standard-version",
+    "clean": "rimraf lib"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -32,6 +37,8 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@types/jest": "^27.4.1",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-polyfill": "^6.26.0",
@@ -46,19 +53,14 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
-    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-cleaner": "^0.2.0",
-    "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-multi-entry": "^2.1.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-uglify": "^6.0.2",
     "standard-version": "^9.3.2",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
-  },
-  "dependencies": {
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-typescript": "^8.3.1"
   }
 }

@@ -10,6 +10,10 @@ type IConvert = {
 	paths: []
 }
 
+type IConfig = {
+	openapiConfig: Object
+}
+
 export class Parser {
 	spec: Object
 	openapiConfig: Object
@@ -18,7 +22,7 @@ export class Parser {
 	tagManage: []
 	authManage: Object
 
-	constructor(spec, config) {
+	constructor(spec: any, config: IConfig) {
 		const { openapiConfig } = config
 		this.spec = spec
 		this.openapiConfig = openapiConfig

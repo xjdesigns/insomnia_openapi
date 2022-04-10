@@ -1,20 +1,21 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-      "target": "es2015",
-      "module": "esnext",
-      "outDir": "lib",
-      "strict": true,
-      "noImplicitAny": false,
-      "removeComments": true,
-      "declaration": true,
-      "allowSyntheticDefaultImports": true
-    },
-    "include": [
-      "src/**/*"
-    ],
-    "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
-    ]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"outDir": "lib",
+		"strict": true,
+		"noImplicitAny": false,
+		"removeComments": true,
+		"declaration": true,
+		"allowSyntheticDefaultImports": true
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
 }
