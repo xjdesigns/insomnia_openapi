@@ -1,17 +1,8 @@
 import { toJs } from './utils/json'
 import { Converter } from './converter'
 
-type IConvert = {
-	openapi: string
-	info: Object
-	components: Object
-	servers?: []
-	tags: []
-	paths: []
-}
-
 type IConfig = {
-	openapiConfig: Object
+	openapiConfig: Object;
 }
 
 export class Parser {
@@ -22,7 +13,7 @@ export class Parser {
 	tagManage: []
 	authManage: Object
 
-	constructor(spec: any, config: IConfig) {
+	constructor (spec: any, config: IConfig) {
 		const { openapiConfig } = config
 		this.spec = spec
 		this.openapiConfig = openapiConfig
@@ -32,12 +23,12 @@ export class Parser {
 		this.authManage = {}
 	}
 
-	getJs() {
+	getJs () {
 		return this.json
 	}
 
-	convert() {
-		const servers = this.converter.createServers(this.json)
+	convert () {
+		// const servers = this.converter.createServers(this.json)
 		const { tags, tagManage } = this.converter.createTags(this.json)
 		this.tagManage = tagManage
 		const paths = this.converter.createPaths(this.json, this)

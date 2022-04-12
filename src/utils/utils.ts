@@ -23,15 +23,15 @@ type IResponses = {
 	'401': IResponse;
 }
 
-export function createParameters(request: IRequest, url: string): any[] {
+export function createParameters (request: IRequest, url: string): any[] {
 	let parameters: any[] = []
 	const pathParams: any[] = createPathParams(url)
 	parameters = [...pathParams]
 
-	for (let key in request) {
+	for (const key in request) {
 		if (key === 'headers') {
 			for (let h = 0; h < request[key].length; h++) {
-				if (request[key][h].name !== 'Authorization' || request[key][h].name === 'Content-Type') {
+				if (request[key][h].name !== 'Authorization' || request[key][h].name !== 'Content-Type') {
 					const header = {
 						name: request[key][h].name,
 						in: 'header',
@@ -41,28 +41,67 @@ export function createParameters(request: IRequest, url: string): any[] {
 				}
 			}
 		}
+
+		if (key === 'parameters') {
+			for (let h = 0; h < request[key].length; h++) {
+				const param = {
+					name: request[key][h].name,
+					in: 'path',
+					schema: {}
+				}
+				parameters.push(param)
+			}
+		}
 	}
 
 	return parameters
 }
 
-export function createSecurity(request: IRequest, that: any): {}[] {
-	let security: {}[] = []
+export function createSecurity (request: IRequest, that: any): {}[] {
+	const security: {}[] = []
 	let isJwt: boolean = false
 	let isServiceToken: boolean = false
+	let isBasicAuth: boolean = false
 
-	for (let key in request) {
+	for (const key in request) {
 		if (key === 'headers') {
 			for (let h = 0; h < request[key].length; h++) {
 				if (request[key][h].name === 'Authorization') {
-					const authType = request[key][h].value.includes('Bearer');
 					isJwt = request[key][h].value.includes('jwt')
 					isServiceToken = request[key][h].value.includes('Service Token')
-					const auth = {
-						'bearerAuth': []
+					isBasicAuth = request[key][h].value.includes('Basic')
+
+					if (isJwt || isServiceToken) {
+						const auth = {
+							'bearerAuth': []
+						}
+						security.push(auth)
 					}
-					security.push(auth)
+					if(isBasicAuth) {
+						const auth = {
+							'basicAuth': []
+						}
+						security.push(auth)
+					}
 				}
+			}
+		}
+
+		if (key === 'authentication') {
+			if (request[key].type === 'bearer') {
+				isJwt = true
+				const auth = {
+					'bearerAuth': []
+				}
+				security.push(auth)
+			}
+
+			if (request[key].type === 'basic') {
+				isBasicAuth = true
+				const auth = {
+					'basicAuth': []
+				}
+				security.push(auth)
 			}
 		}
 	}
@@ -81,11 +120,19 @@ export function createSecurity(request: IRequest, that: any): {}[] {
 		}
 	}
 
+	if (isBasicAuth) {
+		that.authManage['basicAuth'] = {
+			type: 'http',
+			scheme: 'basic'
+		}
+	}
+
 	return security
 }
 
-export function createPathParams(url: string) {
+export function createPathParams (url: string) {
 	const pathParams: any[] = []
+	// eslint-disable-next-line no-undef
 	const params: RegExpMatchArray | null = url.match(REGEX.paramRegex);
 
 	if (params && params.length > 0) {
@@ -105,7 +152,7 @@ export function createPathParams(url: string) {
 	return pathParams
 }
 
-export function tagLookup(id: string): string[] {
+export function tagLookup (id: string): string[] {
 	if (id) {
 		return [id]
 	}
@@ -114,11 +161,13 @@ export function tagLookup(id: string): string[] {
 }
 
 // NOTE: See note on createPath method
-export function urlFix(url: string): string {
+export function urlFix (url: string): string {
 	let replacer: string = ''
-
 	replacer = url.replace(REGEX.urlMatch, '')
+	// eslint-disable-next-line no-undef
 	const result: RegExpMatchArray | null = replacer.match(REGEX.promptRegex)
+	// eslint-disable-next-line no-undef
+	const hasVars: boolean = REGEX.varMatch.test(replacer)
 
 	if (result) {
 		result.forEach(res => {
@@ -129,11 +178,14 @@ export function urlFix(url: string): string {
 		})
 	}
 
+	if (hasVars) {
+		replacer = replacer.replace(/{ /g, '').replace(/ }/g, '')
+	}
 
 	return replacer
 }
 
-export function createRequestBody(request: IRequest): {} | null {
+export function createRequestBody (request: IRequest): {} | null {
 	const { body } = request
 	const len = Object.keys(body).length || 0
 
@@ -145,7 +197,7 @@ export function createRequestBody(request: IRequest): {} | null {
 			if (tlen > 0) {
 				const properties = {}
 
-				for (let key in textJson) {
+				for (const key in textJson) {
 					properties[key] = {
 						type: typeof textJson[key],
 						example: textJson[key]
@@ -172,7 +224,7 @@ export function createRequestBody(request: IRequest): {} | null {
 
 // Since I do not see data being passed back for responses I am just making this up for now
 // Need to do more testing
-export function createGenericResponses(name: string): IResponses {
+export function createGenericResponses (name: string): IResponses {
 	const responses = {
 		'200': {
 			description: `${name} 200 response generic`,

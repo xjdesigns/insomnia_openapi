@@ -8,9 +8,9 @@ import {
 } from './utils/utils'
 
 type IResources = {
-	_type: string
-	_id: string
-	name: string
+	_type: string;
+	_id: string;
+	name: string;
 }
 
 type IData = {
@@ -18,13 +18,11 @@ type IData = {
 }
 
 export class Converter {
-	constructor() {}
-
-	createTags(data: IData) {
+	createTags (data: IData) {
 		let is_type_rgroup: any[] = []
-		let tags: {}[] = []
-		let tagManage: {} = {}
-		let dupeTags: string[] = []
+		const tags: {}[] = []
+		const tagManage: {} = {}
+		const dupeTags: string[] = []
 		const { resources } = data
 		const len = resources.length
 
@@ -49,10 +47,10 @@ export class Converter {
 	// TODO: Paths cannot be dynamic from the insomnia
 	// example {{ _.internalUrl }}/internal/washd2d/jobs/complex/{% prompt 'Complex Id', 'Complex Id', '', '', false, true %}
 	// Prompt value used is first string after 'prompt
-	createPaths(data: IData, parent: any) {
+	createPaths (data: IData, parent: any) {
 		const that = parent
 		let is_type_request: any[] = []
-		let paths: {} = {}
+		const paths: {} = {}
 		const { resources } = data
 		const len = resources.length
 
@@ -62,33 +60,41 @@ export class Converter {
 			}
 		}
 
-		// console.warn('is_type_request', is_type_request)
-
 		for (let r = 0; r < is_type_request.length; r++) {
 			const method = is_type_request[r].method.toLowerCase()
 			const url = urlFix(is_type_request[r].url)
-			paths[url] = {
-				[method]: {
+			if (paths[url]) {
+				paths[url][method] = {
 					description: is_type_request[r].name,
 					tags: tagLookup(that.tagManage[is_type_request[r].parentId]),
 					parameters: createParameters(is_type_request[r], url),
-					...createRequestBody(is_type_request[r]) && { requestBody: createRequestBody(is_type_request[r])},
+					...createRequestBody(is_type_request[r]) && { requestBody: createRequestBody(is_type_request[r]) },
 					responses: createGenericResponses(is_type_request[r].name),
 					...createSecurity(is_type_request[r], that) && { security: createSecurity(is_type_request[r], that) }
+				}
+			} else {
+				paths[url] = {
+					[method]: {
+						description: is_type_request[r].name,
+						tags: tagLookup(that.tagManage[is_type_request[r].parentId]),
+						parameters: createParameters(is_type_request[r], url),
+						...createRequestBody(is_type_request[r]) && { requestBody: createRequestBody(is_type_request[r]) },
+						responses: createGenericResponses(is_type_request[r].name),
+						...createSecurity(is_type_request[r], that) && { security: createSecurity(is_type_request[r], that) }
+					}
 				}
 			}
 		}
 
-		// console.warn('paths', paths)
 		return paths;
 	}
 
 	// Server data coming I dont think we need
 	// But I could still output if we wanted a curated list from Insomnia
-	createServers(data) {
+	createServers (data) {
 		// expects full payload for resources, could clean up
 		let is_type_env: any[] = []
-		let servers: {}[] = []
+		const servers: {}[] = []
 		const { resources } = data
 		const len = resources.length
 
@@ -105,7 +111,7 @@ export class Converter {
 		for (let s = 0; s < is_type_env.length; s++) {
 
 			if (is_type_env[s].data) {
-				for (let e in is_type_env[s].data) {
+				for (const e in is_type_env[s].data) {
 					const server = {
 						url: is_type_env[s].data[e],
 						description: `${is_type_env[s].name} ${e}`
@@ -114,7 +120,7 @@ export class Converter {
 				}
 			}
 		}
-		// console.warn('servers', servers)
+
 		return servers;
 	}
 }

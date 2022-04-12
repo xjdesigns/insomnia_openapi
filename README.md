@@ -94,6 +94,9 @@ npm run test:coverage
 
 ## TODO:
 - Servers is removed from return
+- Params added, need to add schemas
+- Headers added, need to add schemas
+- Add more auth options, bearer and basic currently handled
 - Add options to config for return values
 - Add ability to pass functions to config for each return to allow user modification
 - Add more tests

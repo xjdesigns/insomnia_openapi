@@ -4,6 +4,7 @@ type IRegex = {
 	promptValueRegex: RegExp;
 	promptRegexWBrackets: RegExp;
 	urlMatch: RegExp;
+	varMatch: RegExp;
 }
 
 export const REGEX: IRegex = {
@@ -11,5 +12,6 @@ export const REGEX: IRegex = {
 	promptRegex: /{%(.*?)%}/g,
 	promptValueRegex: /'(.*?)'/g,
 	promptRegexWBrackets: /({%.*?%})/, // leave off the global to grab all matches
-	urlMatch: /({{.*?}})/g
+	urlMatch: /({{.*?}})/,
+	varMatch: /({{.*?}})/g
 }
