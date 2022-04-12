@@ -29,7 +29,7 @@ and handle as many scenarios as I can for a global community.
     ...
   }
 
-  const parser = new ParserClass(INSOV4, { openapiConfig })
+  const parser = new Parser(INSOV4, { openapiConfig })
   const output = parser.convert()
   console.warn('output::', output)
 ```
