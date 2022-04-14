@@ -9,7 +9,7 @@ export function createParameters (request: IRequest, url: string): IPath[] {
 	for (const key in request) {
 		if (key === 'headers') {
 			for (let h = 0; h < request[key].length; h++) {
-				if (request[key][h].name !== 'Authorization' || request[key][h].name !== 'Content-Type') {
+				if (request[key][h].name !== 'Authorization' && request[key][h].name !== 'Content-Type') {
 					const header = {
 						name: request[key][h].name,
 						in: 'header',
@@ -37,19 +37,17 @@ export function createParameters (request: IRequest, url: string): IPath[] {
 
 export function createSecurity (request: IRequest, that: any): {}[] {
 	const security: {}[] = []
-	let isJwt: boolean = false
-	let isServiceToken: boolean = false
+	let isBearer: boolean = false
 	let isBasicAuth: boolean = false
 
 	for (const key in request) {
 		if (key === 'headers') {
 			for (let h = 0; h < request[key].length; h++) {
 				if (request[key][h].name === 'Authorization') {
-					isJwt = request[key][h].value.includes('jwt')
-					isServiceToken = request[key][h].value.includes('Service Token')
+					isBearer = request[key][h].value.includes('Bearer')
 					isBasicAuth = request[key][h].value.includes('Basic')
 
-					if (isJwt || isServiceToken) {
+					if (isBearer) {
 						const auth = {
 							'bearerAuth': []
 						}
@@ -67,7 +65,7 @@ export function createSecurity (request: IRequest, that: any): {}[] {
 
 		if (key === 'authentication') {
 			if (request[key].type === 'bearer') {
-				isJwt = true
+				isBearer = true
 				const auth = {
 					'bearerAuth': []
 				}
@@ -84,14 +82,7 @@ export function createSecurity (request: IRequest, that: any): {}[] {
 		}
 	}
 
-	if (isJwt) {
-		that.authManage['bearerAuth'] = {
-			type: 'http',
-			scheme: 'bearer'
-		}
-	}
-
-	if (isServiceToken) {
+	if (isBearer) {
 		that.authManage['bearerAuth'] = {
 			type: 'http',
 			scheme: 'bearer'

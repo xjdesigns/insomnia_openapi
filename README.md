@@ -92,6 +92,18 @@ Run tests coverage report
 npm run test:coverage
 ```
 
+## Docs
+Documentation is build using React inside the /docs directory.
+
+Docs use the actual published package so this requires a publish for any changes to see.
+
+### Doc publish
+Inside the /docs run the following command, which will build the app and deploy using gh-pages
+
+```bash
+npm run deploy:docs
+```
+
 ## TODO:
 - Servers is removed from return
 - Params added, need to add schemas

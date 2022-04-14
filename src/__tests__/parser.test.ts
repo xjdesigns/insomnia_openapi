@@ -85,11 +85,6 @@ describe('Parser::', () => {
 						"type": "string"
 					 },
 					 "required": true
-					},
-					{
-					 "name": "Content-Type",
-					 "in": "header",
-					 "schema": {}
 					}
 				 ],
 				 "requestBody": {
@@ -137,6 +132,7 @@ describe('Parser::', () => {
 			}
 		}
 
+		
 		const parser = new Parser(insomniaV4Export, { openapiConfig })
 		const parsed = parser.convert()
 		expect(parsed).toEqual(expected)

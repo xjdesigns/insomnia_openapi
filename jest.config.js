@@ -23,6 +23,7 @@ module.exports = {
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
     "src/**/*.ts",
+    "!**/*.d.ts",
     "!**/node_modules/**"
   ],
 
@@ -30,9 +31,10 @@ module.exports = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "**/*.d.ts"
+  ],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
