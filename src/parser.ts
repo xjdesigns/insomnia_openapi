@@ -1,9 +1,6 @@
 import { toJs } from './utils/json'
 import { Converter } from './converter'
-
-type IConfig = {
-	openapiConfig: Object;
-}
+import { IConfig } from './types'
 
 export class Parser {
 	spec: Object

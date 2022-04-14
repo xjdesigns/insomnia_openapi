@@ -1,31 +1,9 @@
 import { REGEX } from '../constants'
+import { IRequest, IResponses, IPath } from '../types'
 
-type IHeader = {
-	name: 'Authorization' | 'Content-Type';
-}
-
-type IRequest = {
-	header: IHeader;
-	body: {
-		text: string,
-		mimeType: string
-	}
-}
-
-type IResponse = {
-	description: string;
-	content: {}
-}
-
-type IResponses = {
-	'200': IResponse;
-	'400': IResponse;
-	'401': IResponse;
-}
-
-export function createParameters (request: IRequest, url: string): any[] {
-	let parameters: any[] = []
-	const pathParams: any[] = createPathParams(url)
+export function createParameters (request: IRequest, url: string): IPath[] {
+	let parameters: IPath[] = []
+	const pathParams: IPath[] = createPathParams(url)
 	parameters = [...pathParams]
 
 	for (const key in request) {
@@ -130,8 +108,8 @@ export function createSecurity (request: IRequest, that: any): {}[] {
 	return security
 }
 
-export function createPathParams (url: string) {
-	const pathParams: any[] = []
+export function createPathParams (url: string): IPath[] {
+	const pathParams: IPath[] = []
 	// eslint-disable-next-line no-undef
 	const params: RegExpMatchArray | null = url.match(REGEX.paramRegex);
 
@@ -160,13 +138,13 @@ export function tagLookup (id: string): string[] {
 	return []
 }
 
-// NOTE: See note on createPath method
+	// NOTE: Prompt value used is first string after 'prompt
+	// prompt example: {{ _.url }}/path/to/{% prompt 'User Id', 'User Id', '', '', false, true %}
 export function urlFix (url: string): string {
 	let replacer: string = ''
 	replacer = url.replace(REGEX.urlMatch, '')
 	// eslint-disable-next-line no-undef
 	const result: RegExpMatchArray | null = replacer.match(REGEX.promptRegex)
-	// eslint-disable-next-line no-undef
 	const hasVars: boolean = REGEX.varMatch.test(replacer)
 
 	if (result) {

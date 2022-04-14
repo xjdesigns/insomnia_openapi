@@ -97,6 +97,7 @@ npm run test:coverage
 - Params added, need to add schemas
 - Headers added, need to add schemas
 - Add more auth options, bearer and basic currently handled
+- Add JSON to YAML option
 - Add options to config for return values
 - Add ability to pass functions to config for each return to allow user modification
 - Add more tests
