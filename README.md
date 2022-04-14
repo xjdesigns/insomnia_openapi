@@ -1,5 +1,5 @@
 # Insomnia OpenAPI
-[![Coverage Status](https://coveralls.io/repos/github/xjdesigns/insomnia_openapi/badge.svg?branch=master)](https://coveralls.io/github/xjdesigns/HelpingHand?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/xjdesigns/insomnia_openapi/badge.svg?branch=master)](https://coveralls.io/github/xjdesigns/insomnia_openapi?branch=master)
 
 Javascript utility library written in typescript for converting insomnia V4 exports to openapi v3 spec.
 
