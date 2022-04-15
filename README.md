@@ -3,6 +3,11 @@
 
 Javascript utility library written in typescript for converting insomnia V4 exports to openapi v3 spec.
 
+## Docs / Sample app
+Along with the npm module I created a sample app for quick basic use along with docs.
+
+[Insomnia_Openapi_App](https://xjdesigns.github.io/insomnia_openapi/)
+
 ## Install
 ```bash
 npm i insomnia_openapi

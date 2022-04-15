@@ -50,25 +50,20 @@ export class Converter {
 		for (let r = 0; r < isTypeRequest.length; r++) {
 			const method = isTypeRequest[r].method.toLowerCase()
 			const url = urlFix(isTypeRequest[r].url)
+			const data = {
+				description: isTypeRequest[r].name,
+				tags: tagLookup(that.tagManage[isTypeRequest[r].parentId]),
+				parameters: createParameters(isTypeRequest[r], url),
+				...createRequestBody(isTypeRequest[r]) && { requestBody: createRequestBody(isTypeRequest[r]) },
+				responses: createGenericResponses(isTypeRequest[r].name),
+				...createSecurity(isTypeRequest[r], that) && { security: createSecurity(isTypeRequest[r], that) }
+			}
+
 			if (paths[url]) {
-				paths[url][method] = {
-					description: isTypeRequest[r].name,
-					tags: tagLookup(that.tagManage[isTypeRequest[r].parentId]),
-					parameters: createParameters(isTypeRequest[r], url),
-					...createRequestBody(isTypeRequest[r]) && { requestBody: createRequestBody(isTypeRequest[r]) },
-					responses: createGenericResponses(isTypeRequest[r].name),
-					...createSecurity(isTypeRequest[r], that) && { security: createSecurity(isTypeRequest[r], that) }
-				}
+				paths[url][method] = data
 			} else {
 				paths[url] = {
-					[method]: {
-						description: isTypeRequest[r].name,
-						tags: tagLookup(that.tagManage[isTypeRequest[r].parentId]),
-						parameters: createParameters(isTypeRequest[r], url),
-						...createRequestBody(isTypeRequest[r]) && { requestBody: createRequestBody(isTypeRequest[r]) },
-						responses: createGenericResponses(isTypeRequest[r].name),
-						...createSecurity(isTypeRequest[r], that) && { security: createSecurity(isTypeRequest[r], that) }
-					}
+					[method]: data
 				}
 			}
 		}

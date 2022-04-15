@@ -2,6 +2,14 @@ export type IConfig = {
 	openapiConfig: Object;
 }
 
+export type IConvert = {
+	openapi: string;
+	info: {};
+	components: {};
+	tags: [];
+	paths: [];
+}
+
 export type IHeader = {
 	name: 'Authorization' | 'Content-Type';
 }

@@ -1,6 +1,6 @@
 import { toJs } from './utils/json'
 import { Converter } from './converter'
-import { IConfig } from './types'
+import { IConfig, IConvert } from './types'
 
 export class Parser {
 	spec: Object
@@ -24,7 +24,7 @@ export class Parser {
 		return this.json
 	}
 
-	convert () {
+	convert (): IConvert {
 		// const servers = this.converter.createServers(this.json)
 		const { tags, tagManage } = this.converter.createTags(this.json)
 		this.tagManage = tagManage
