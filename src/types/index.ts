@@ -1,5 +1,12 @@
+export type IOptions = {
+	returnServers?: boolean;
+	serverCallback?: (servers: []) => {};
+	responseCallback?: (url: string, method: string) => {};
+}
+
 export type IConfig = {
 	openapiConfig: Object;
+	options: IOptions;
 }
 
 export type IConvert = {

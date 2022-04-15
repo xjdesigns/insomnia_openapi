@@ -40,6 +40,7 @@ export class Converter {
 		const paths: {} = {}
 		const { resources } = data
 		const len = resources.length
+		const { responsesCallback } = that.options
 
 		for (let i = 0; i < len; i++) {
 			if (resources[i]._type === 'request') {
@@ -55,7 +56,7 @@ export class Converter {
 				tags: tagLookup(that.tagManage[isTypeRequest[r].parentId]),
 				parameters: createParameters(isTypeRequest[r], url),
 				...createRequestBody(isTypeRequest[r]) && { requestBody: createRequestBody(isTypeRequest[r]) },
-				responses: createGenericResponses(isTypeRequest[r].name),
+				responses: responsesCallback ? responsesCallback(url, method) : createGenericResponses(isTypeRequest[r].name),
 				...createSecurity(isTypeRequest[r], that) && { security: createSecurity(isTypeRequest[r], that) }
 			}
 
@@ -73,7 +74,7 @@ export class Converter {
 
 	// Server data coming I dont think we need
 	// But I could still output if we wanted a curated list from Insomnia
-	createServers (data: IData): {}[] {
+	createServers (data: IData, serverCallback: ([]) => {}): {}[] {
 		const isTypeEnv: IResources[] = []
 		const servers: {}[] = []
 		const { resources } = data
@@ -99,6 +100,10 @@ export class Converter {
 					servers.push(server)
 				}
 			}
+		}
+
+		if (serverCallback) {
+			return serverCallback(servers)
 		}
 
 		return servers;
