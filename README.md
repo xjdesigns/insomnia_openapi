@@ -39,6 +39,41 @@ and handle as many scenarios as I can for a global community.
   console.warn('output::', output)
 ```
 
+### Options
+```javascript
+  const responseExample = (url, method) => {
+    if (url === '/path/to/api') {
+      if (method === 'get') {
+        return {
+          '200': {
+            description: '200 response',
+            content: {
+              'application/json': {
+                schema: 'object',
+                properties: {
+                  id: {
+                    type: 'integer',
+                    example: 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const options = {
+    serverReturn: true,
+    serverCallback: servers => {[]},
+    responseCallback: responseExample
+  }
+
+  const parser = new Parser(INSOV4, { ..., options })
+```
+
+
 ## Build
 Typescript compiler for type declarations. Rollup and babel used for bundling.
 
