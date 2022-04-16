@@ -18,6 +18,22 @@ body > iframe {
 	flex: 1;
 }
 
+.ino-selection {
+	width: 50%;
+	margin: 0 auto;
+	padding: 24px 0;
+}
+
+.ino-selection > div {
+	margin: 12px 0;
+}
+
+.ino-docs-container {
+	width: 50%;
+	margin: 0 auto;
+	padding: 24px 0;
+}
+
 .ino-convert-container {
 	display: flex;
 	width: 90%;

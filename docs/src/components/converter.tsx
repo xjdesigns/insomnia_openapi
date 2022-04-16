@@ -80,6 +80,19 @@ const Converter = () => {
 		}
 	}
 
+	const saveJson = () => {
+		if (inoOutput) {
+			const body = document.body
+			const a = document.createElement('a')
+			const file = new Blob([inoOutput], { type: 'application/json' })
+			a.href = URL.createObjectURL(file)
+			a.download = 'openapi.json'
+			body.appendChild(a)
+			a.click()
+			body.removeChild(a)
+		}
+	}
+
 	return (
 		<div>
 			<div className={`ino-notifbar ${notifColor()}`}>{notifState}</div>
@@ -109,6 +122,9 @@ const Converter = () => {
 					</div>
 					<div className="spx-mg-bt-12">
 						<button className="spx-btn spx-btn--sd spx-btn--block" onClick={handleReset}>Reset</button>
+					</div>
+					<div className="spx-mg-bt-12">
+						<button className="spx-btn spx-btn--pr--inverted spx-btn--block" onClick={saveJson} disabled={!inoOutput}>Download</button>
 					</div>
 					<div className="spx-mg-bt-12">
 						<button className="spx-btn spx-btn--pr--inverted spx-btn--block" onClick={openRedoc} disabled={!inoOutput}>Redoc</button>
