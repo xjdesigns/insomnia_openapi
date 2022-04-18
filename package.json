@@ -1,7 +1,7 @@
 {
   "name": "insomnia_openapi",
   "description": "Javascript helper utilities for applications",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

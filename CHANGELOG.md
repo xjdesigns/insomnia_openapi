@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/xjdesigns/insomnia_openapi/compare/v0.0.3...v0.0.4) (2022-04-18)
+
+
+### Features
+
+* **options:** Added in options for servers and responses ([fb0249a](https://github.com/xjdesigns/insomnia_openapi/commit/fb0249a40461d66e2e47df42fa092a25b55ece96))
+
 ### [0.0.3](https://github.com/xjdesigns/insomnia_openapi/compare/v0.0.2...v0.0.3) (2022-04-14)
 
 
