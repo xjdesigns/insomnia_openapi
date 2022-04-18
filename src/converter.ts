@@ -74,7 +74,7 @@ export class Converter {
 
 	// Server data coming I dont think we need
 	// But I could still output if we wanted a curated list from Insomnia
-	createServers (data: IData, serverCallback: ([]) => {}): {}[] {
+	createServers (data: IData, serverCallback: any): {}[] {
 		const isTypeEnv: IResources[] = []
 		const servers: {}[] = []
 		const { resources } = data
