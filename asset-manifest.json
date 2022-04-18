@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/insomnia_openapi/static/css/main.3441d64f.chunk.css",
-    "main.js": "/insomnia_openapi/static/js/main.a076883b.chunk.js",
-    "main.js.map": "/insomnia_openapi/static/js/main.a076883b.chunk.js.map",
-    "runtime-main.js": "/insomnia_openapi/static/js/runtime-main.c97ddcc5.js",
-    "runtime-main.js.map": "/insomnia_openapi/static/js/runtime-main.c97ddcc5.js.map",
-    "static/css/2.23d7cee4.chunk.css": "/insomnia_openapi/static/css/2.23d7cee4.chunk.css",
-    "static/js/2.509fe2e1.chunk.js": "/insomnia_openapi/static/js/2.509fe2e1.chunk.js",
-    "static/js/2.509fe2e1.chunk.js.map": "/insomnia_openapi/static/js/2.509fe2e1.chunk.js.map",
-    "static/js/3.9f00028d.chunk.js": "/insomnia_openapi/static/js/3.9f00028d.chunk.js",
-    "static/js/3.9f00028d.chunk.js.map": "/insomnia_openapi/static/js/3.9f00028d.chunk.js.map",
+    "main.css": "/insomnia_openapi/static/css/main.42677e8d.chunk.css",
+    "main.js": "/insomnia_openapi/static/js/main.8ff26c2c.chunk.js",
+    "main.js.map": "/insomnia_openapi/static/js/main.8ff26c2c.chunk.js.map",
+    "runtime-main.js": "/insomnia_openapi/static/js/runtime-main.65950f0b.js",
+    "runtime-main.js.map": "/insomnia_openapi/static/js/runtime-main.65950f0b.js.map",
+    "static/css/2.6f0210f8.chunk.css": "/insomnia_openapi/static/css/2.6f0210f8.chunk.css",
+    "static/js/2.39c2d0c2.chunk.js": "/insomnia_openapi/static/js/2.39c2d0c2.chunk.js",
+    "static/js/2.39c2d0c2.chunk.js.map": "/insomnia_openapi/static/js/2.39c2d0c2.chunk.js.map",
+    "static/js/3.20daec20.chunk.js": "/insomnia_openapi/static/js/3.20daec20.chunk.js",
+    "static/js/3.20daec20.chunk.js.map": "/insomnia_openapi/static/js/3.20daec20.chunk.js.map",
     "index.html": "/insomnia_openapi/index.html",
-    "static/css/2.23d7cee4.chunk.css.map": "/insomnia_openapi/static/css/2.23d7cee4.chunk.css.map",
-    "static/css/main.3441d64f.chunk.css.map": "/insomnia_openapi/static/css/main.3441d64f.chunk.css.map",
-    "static/js/2.509fe2e1.chunk.js.LICENSE.txt": "/insomnia_openapi/static/js/2.509fe2e1.chunk.js.LICENSE.txt"
+    "static/css/2.6f0210f8.chunk.css.map": "/insomnia_openapi/static/css/2.6f0210f8.chunk.css.map",
+    "static/css/main.42677e8d.chunk.css.map": "/insomnia_openapi/static/css/main.42677e8d.chunk.css.map",
+    "static/js/2.39c2d0c2.chunk.js.LICENSE.txt": "/insomnia_openapi/static/js/2.39c2d0c2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c97ddcc5.js",
-    "static/css/2.23d7cee4.chunk.css",
-    "static/js/2.509fe2e1.chunk.js",
-    "static/css/main.3441d64f.chunk.css",
-    "static/js/main.a076883b.chunk.js"
+    "static/js/runtime-main.65950f0b.js",
+    "static/css/2.6f0210f8.chunk.css",
+    "static/js/2.39c2d0c2.chunk.js",
+    "static/css/main.42677e8d.chunk.css",
+    "static/js/main.8ff26c2c.chunk.js"
   ]
 }
