@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/insomnia_openapi/static/css/main.42677e8d.chunk.css",
-    "main.js": "/insomnia_openapi/static/js/main.8ff26c2c.chunk.js",
-    "main.js.map": "/insomnia_openapi/static/js/main.8ff26c2c.chunk.js.map",
+    "main.css": "/insomnia_openapi/static/css/main.16dcc3f3.chunk.css",
+    "main.js": "/insomnia_openapi/static/js/main.26799267.chunk.js",
+    "main.js.map": "/insomnia_openapi/static/js/main.26799267.chunk.js.map",
     "runtime-main.js": "/insomnia_openapi/static/js/runtime-main.65950f0b.js",
     "runtime-main.js.map": "/insomnia_openapi/static/js/runtime-main.65950f0b.js.map",
     "static/css/2.6f0210f8.chunk.css": "/insomnia_openapi/static/css/2.6f0210f8.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.20daec20.chunk.js.map": "/insomnia_openapi/static/js/3.20daec20.chunk.js.map",
     "index.html": "/insomnia_openapi/index.html",
     "static/css/2.6f0210f8.chunk.css.map": "/insomnia_openapi/static/css/2.6f0210f8.chunk.css.map",
-    "static/css/main.42677e8d.chunk.css.map": "/insomnia_openapi/static/css/main.42677e8d.chunk.css.map",
+    "static/css/main.16dcc3f3.chunk.css.map": "/insomnia_openapi/static/css/main.16dcc3f3.chunk.css.map",
     "static/js/2.39c2d0c2.chunk.js.LICENSE.txt": "/insomnia_openapi/static/js/2.39c2d0c2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.65950f0b.js",
     "static/css/2.6f0210f8.chunk.css",
     "static/js/2.39c2d0c2.chunk.js",
-    "static/css/main.42677e8d.chunk.css",
-    "static/js/main.8ff26c2c.chunk.js"
+    "static/css/main.16dcc3f3.chunk.css",
+    "static/js/main.26799267.chunk.js"
   ]
 }
